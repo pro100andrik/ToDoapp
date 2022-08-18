@@ -5,39 +5,40 @@ import Credits from './components/Credits';
 
 import './App.css';
 
+const DEFAULTTASKS = [
+  {index: 0, task: 'clean home',isChecked: false},
+  {index: 1,task: 'go clean myself in the bathroom',isChecked: false},
+  {index: 2,task: 'play on guitar',isChecked: true},
+  {index: 3,task: 'learn react',isChecked: false},
+  {index: 4,task: 'go to store',isChecked: false},
+];
+
+const tasks = [];
+const localStorage = window.localStorage;
+if (localStorage.length === 0){
+  tasks.push(...DEFAULTTASKS)
+}else{
+  const storageTasks = JSON.parse(localStorage.getItem('tasks'))
+  tasks.push(...storageTasks)
+}
+
+
 
 class App extends React.Component {
+
   render(){
+
+
     return(
       <div className="mainContainer">
       <Caption />
-      <ListContainer taskList={TASKS} />
+      <ListContainer taskList={tasks} />
       <Credits />
       </div>
     )
   }
 }
 
-/*
-FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS
- FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS
-  FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS
-   FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS
-    FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS
-     FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS
-      FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS FIX SHOW STATUS
-
-*/
-
-
-
-const TASKS = [
-  {index: 0, task: 'clean home',isChecked: false},
-  {index: 1,task: 'go clean myself in the bathroom',isChecked: false},
-  {index: 2,task: 'play on guitar',isChecked: true},
-  {index: 3,task: 'learn react',isChecked: false},
-  {index: 4,task: 'go to store',isChecked: false},
-]
 
 
 export default App;

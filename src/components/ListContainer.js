@@ -26,42 +26,47 @@ class ListContainer extends React.Component{
   }
 
   handleAddItem(taskName){
-    this.setState(({
-       tasks: [...this.state.tasks, {task:taskName, isChecked: false, index: this.state.tasks[this.state.tasks.length - 1].index + +1}],
+    this.setState({
+       tasks: [...this.state.tasks, {task:taskName, isChecked: false, index: this.state.tasks[this.state.tasks.length - 1]?.index + +1 || 0}],
        buttonIsVisible: [...this.state.buttonIsVisible, false]
-    }))
+    },this.updateLocalStorage)
   }
 
   handleIsChecked(target){
     this.setState({
-      tasks: this.state.tasks.map((el, index) => {
+      tasks: this.state.tasks.map(el => {
           if (el.index === +target) el.isChecked = !el.isChecked
         return el;
       }),
       showRemoveButton: this.state.tasks.map(el => el.isChecked).includes(true)
-      });
+    },this.updateLocalStorage);
   }
 
   handleDeleteItem(target){
     this.setState(prevState => ({
-      tasks: prevState.tasks.filter((el, i) => target !== i),
-      buttonIsVisible: prevState.buttonIsVisible.filter((el, index) => index < prevState.buttonIsVisible.length - 1),
-      showRemoveButton: prevState.tasks.filter((el, i) => target !== i).map(el => el.isChecked).includes(true)
-    }))
+      tasks: prevState.tasks.filter((_, i) => target !== i),
+      buttonIsVisible: prevState.buttonIsVisible.filter((_, index) => index < prevState.buttonIsVisible.length - 1),
+      showRemoveButton: prevState.tasks.filter((_, i) => target !== i).map(el => el.isChecked).includes(true)
+    }),this.updateLocalStorage)
   }
 
   handleRemoveCompleted(){
     this.setState(prevState => ({
-      tasks: prevState.tasks.filter((el, i) => !el.isChecked),
-      buttonIsVisible: prevState.buttonIsVisible.filter((el, index) => index < prevState.buttonIsVisible.length - 1),
+      tasks: prevState.tasks.filter(el => !el.isChecked),
+      buttonIsVisible: prevState.buttonIsVisible.filter((_, index) => index < prevState.buttonIsVisible.length - 1),
       showRemoveButton: false
-    }))
+    }),this.updateLocalStorage)
   }
 
   handleItemsVisibility(type){
     this.setState({
       showType: type
     })
+  }
+
+  updateLocalStorage = () => {
+    const localStorage = window.localStorage;
+    localStorage.setItem('tasks', JSON.stringify(this.state.tasks))
   }
 
   render(){
