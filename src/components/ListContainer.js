@@ -66,7 +66,7 @@ class ListContainer extends React.Component{
 
   updateLocalStorage = () => {
     const localStorage = window.localStorage;
-    localStorage.setItem('tasks', JSON.stringify(this.state.tasks))
+    localStorage.setItem('todoAppTasks', JSON.stringify(this.state.tasks))
   }
 
   render(){

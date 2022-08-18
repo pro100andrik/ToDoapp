@@ -15,10 +15,11 @@ const DEFAULTTASKS = [
 
 const tasks = [];
 const localStorage = window.localStorage;
-if (localStorage.length === 0){
+
+if (!localStorage.getItem('todoAppTasks')){
   tasks.push(...DEFAULTTASKS)
 }else{
-  const storageTasks = JSON.parse(localStorage.getItem('tasks'))
+  const storageTasks = JSON.parse(localStorage.getItem('todoAppTasks'))
   tasks.push(...storageTasks)
 }
 
