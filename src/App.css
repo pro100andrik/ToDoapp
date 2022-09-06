@@ -201,11 +201,18 @@ li:last-child{
   /* For mobile phones: */
   .mainContainer{
     max-height: 90vh;
-    min-width: 80vw;
+    min-width: 90vw;
+    padding: 10px;
+    margin: 0;
+  }
+
+  .caption {
+    font-size: 3em;
+    margin: 10px;
   }
 
   ul {
-    max-height: 50vh;
+    max-height: 60vh;
   }
 
   .controls {
@@ -220,6 +227,10 @@ li:last-child{
 
   .remove-button {
     width: 80px;
+  }
+
+  .credits {
+    margin: 5px;
   }
 
 }
