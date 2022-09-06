@@ -17,8 +17,7 @@ body {
   width: 60%;
   min-width: 500px;
   max-width: 1000px;
-
-
+  max-height: 100vh;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -87,7 +86,10 @@ body {
 }
 
 ul {
+  margin-top: 0;
   padding-left: 0px;
+  max-height: 60vh;
+  overflow: auto;
 }
 
 li {
@@ -193,5 +195,31 @@ li:last-child{
 
 .autor-name {
   color: rebeccapurple;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .mainContainer{
+    max-height: 90vh;
+    min-width: 80vw;
+  }
+
+  ul {
+    max-height: 50vh;
+  }
+
+  .controls {
+    height: 70px;
+  }
+
+  .visibility-buttons {
+    display: flex;
+    flex-direction: column;
+    height: 70px;
+  }
+
+  .remove-button {
+    width: 80px;
+  }
 
 }

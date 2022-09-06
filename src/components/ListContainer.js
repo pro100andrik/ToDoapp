@@ -71,8 +71,9 @@ class ListContainer extends React.Component{
 
   render(){
       return(
-      <div><ul>
+      <div>
       <TextArea handleAddItem={this.handleAddItem} />
+      <ul>
       <ListOfItems
         taskList={this.state.tasks}
         handleCheck={this.handleIsChecked}
