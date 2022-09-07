@@ -2,7 +2,7 @@ function Credits(){
   return (
      <div className='credits'>
        created by <span className='autor-name'> KonAnd </span> <br />
-     for Portfolio
+     Click on element to edit
      </div>
   )
 }
