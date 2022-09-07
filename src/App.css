@@ -119,16 +119,15 @@ li {
   background: #f2f2f2;
   border: 1px solid lightgrey;
   border-top: 0px;
-  font-size: 120%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 }
 
 .checkbox {
-  margin: 3px;
-  width: 20px;
+  margin: 3px 10px 3px 3px;
   height: 20px;
-  margin-right: 10px;
-
-
+  min-width: 20px;
 }
 
 .text {
@@ -136,6 +135,45 @@ li {
   padding-bottom: 5px;
   height: 100%;
   position: relative;
+  font-size: 16px;
+  word-wrap: break-word;
+}
+
+.input-wrapper{
+  display: inline-block;
+  padding-bottom: 5px;
+  height: 100%;
+  position: relative;
+  width: 75%;
+  height: 100%;
+}
+
+.task-input {
+  width: 100%;
+  border: 0;
+  background: 0;
+  padding: 0;
+  height: 100%;
+  position: relative;
+  font-size: 16px;
+  font-family: monospace;
+  word-wrap: break-word;
+
+}
+
+.task-input:focus {
+  outline: none;
+}
+
+.save-button {
+  position: absolute;
+  right: 40px;
+  border: 0;
+  cursor: pointer;
+  background: rebeccapurple;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 10px -1px rebeccapurple;
 }
 
 li:last-child{
@@ -246,6 +284,22 @@ li:hover .close-button {
     height: 70px;
   }
 
+  .input-wrapper {
+    width: 65%;
+  }
+
+  .text {
+    width: 80%;
+  }
+
+  .close-button {
+    visibility: visible;
+  }
+
+  .save-button {
+    right: 30px;
+  }
+
   .remove-button {
     width: 80px;
   }
@@ -253,9 +307,4 @@ li:hover .close-button {
   .credits {
     margin: 5px;
   }
-
-  .close-button {
-    visibility: visible;
-  }
-
 }
