@@ -5,6 +5,26 @@ body {
   font-family: monospace;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(102, 51, 153, 0.36);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(102, 51, 153, 0.36);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(102, 51, 153, 0.62);
+}
+
 .mainContainer {
   background-color: white;
   display: block;
@@ -128,7 +148,12 @@ li:last-child{
   text-decoration: line-through;
 }
 
+li:hover .close-button {
+    visibility: visible;
+}
+
 .close-button {
+  visibility: hidden;
   position: absolute;
   right: 5px;
   background: none;
@@ -145,10 +170,6 @@ li:last-child{
 
 .close-button:focus{
   outline: none;
-}
-
-.hiden {
-  display: none;
 }
 
 .controls {
@@ -231,6 +252,10 @@ li:last-child{
 
   .credits {
     margin: 5px;
+  }
+
+  .close-button {
+    visibility: visible;
   }
 
 }
