@@ -7,7 +7,10 @@ class ListContainer extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      tasks: this.props.taskList,
+      tasks: this.props.taskList.map(element => {
+        element.editable = false;
+        return element;
+      }),
       showType: 'showAll',
       showRemoveButton: this.props.taskList.map(el => el.isChecked).includes(true)
     }
@@ -54,9 +57,46 @@ class ListContainer extends React.Component{
     })
   }
 
+  handleClick = (targetIndex) => {
+    this.setState({
+      tasks: this.state.tasks.map((element, index) => {
+        if (targetIndex === index){
+          element.editable = true;
+        }
+        return element;
+      })
+    })
+  }
+
+  handleInputBlur = () => {
+    this.setState({
+      tasks: this.state.tasks.map((element) => {
+          element.editable = false;
+        return element;
+      })
+    },this.updateLocalStorage)
+  }
+
+  handleChangeTask = (targetIndex, targetText) => {
+    this.setState({
+      tasks: this.state.tasks.map((element, index) => {
+        if (targetIndex === index){
+          element.task = targetText
+        }
+        return element;
+      })
+    })
+  }
+
   updateLocalStorage = () => {
     const localStorage = window.localStorage;
-    localStorage.setItem('todoAppTasks', JSON.stringify(this.state.tasks))
+    localStorage.setItem('todoAppTasks', JSON.stringify(this.state.tasks.map(element => {
+      const save = {}
+      save.index = element.index;
+      save.task = element.task;
+      save.isChecked = element.isChecked;
+      return save;
+    })))
   }
 
   render(){
@@ -69,6 +109,9 @@ class ListContainer extends React.Component{
         handleCheck={this.handleIsChecked}
         handleDeleteItem={this.handleDeleteItem}
         showType={this.state.showType}
+        handleClick={this.handleClick}
+        handleInputBlur={this.handleInputBlur}
+        handleChangeTask={this.handleChangeTask}
       /></ul>
       <Controls
         taskList={this.state.tasks}

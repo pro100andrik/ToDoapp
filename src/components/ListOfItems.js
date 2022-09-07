@@ -10,6 +10,9 @@ const ListOfItems = props =>{
     props.handleDeleteItem(index)
   }
 
+  const handleDoubleClick = e =>{
+    e.stopPropagation();
+  }
 
     let filteredTasks = props.taskList;
     if(props.showType === 'showActive'){
@@ -19,15 +22,38 @@ const ListOfItems = props =>{
     }
     return(
       filteredTasks.map((element, index) =>
-                          <li key={index}>
+                          <li key={index}
+                              // onClick={(e) => props.handleDoubleClick(index, e)}
+                              // onDoubleClick={(e) => props.handleDoubleClick(index, e)}
+                              >
                             <input type='checkbox'
                               value={element.index}
                               checked={element.isChecked}
                               onChange={handleCheck}
-                              className='checkbox'>
-                            </input>
+                              onDoubleClick={(e) => handleDoubleClick(e)}
+                              className='checkbox'/>
 
-                            <span className={element.isChecked ? 'text checked-element' : 'text'} >{element.task}</span>
+                            {element.editable
+                              ?
+                            <>
+                              <span className='input-wrapper'>
+                              <input autoFocus
+                                     type='text'
+                                     className='task-input'
+                                     value={element.task}
+                                     onBlur={props.handleInputBlur}
+                                     onChange={(e) => props.handleChangeTask(index, e.target.value)}/>
+                              </span>
+                              <button className='save-button'>Save</button>
+                            </>
+                              :
+                            <span onClick={(e) => props.handleClick(index, e)}
+                                  className={element.isChecked ? 'text checked-element' : 'text'}>
+                                  {element.task}
+                            </span>
+                            }
+
+
                             <button className='close-button'
                             onClick={() => handleButtonClick(index)}>X</button>
                           </li>)
